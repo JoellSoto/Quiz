@@ -47,13 +47,13 @@ public class QuestionServiceImp implements QuestionService {
             currentAnswer.setQuestion(questiontoUpdate);
             currentAnswer.setName(answerToUpdate.getName());
             currentAnswer.setCorrect(answerToUpdate.isCorrect());
-            answerstoUpdate.add(i,currentAnswer);
+            answerRepository.save(currentAnswer);
         }
 
         questiontoUpdate.setQuestion(question.getQuestion());
         questiontoUpdate.setOptions(answerstoUpdate);
         questionsRepository.save(questiontoUpdate);
-        answerRepository.saveAll(answerstoUpdate);
+
 
 
 
