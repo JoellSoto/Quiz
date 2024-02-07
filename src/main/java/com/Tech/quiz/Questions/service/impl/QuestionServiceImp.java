@@ -57,9 +57,5 @@ public class QuestionServiceImp implements QuestionService {
         questionsRepository.save(questiontoUpdate);
         answerRepository.saveAll(newAnswersList);
 
-
-
-
     }
-
 }
