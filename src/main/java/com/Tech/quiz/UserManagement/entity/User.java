@@ -1,4 +1,4 @@
-package UserManagement.Entity;
+package com.Tech.quiz.UserManagement.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;

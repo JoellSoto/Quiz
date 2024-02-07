@@ -1,4 +1,4 @@
-package UserManagement.dto;
+package com.Tech.quiz.UserManagement.dto;
 
 
 import lombok.*;

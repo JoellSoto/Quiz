@@ -1,4 +1,4 @@
-package UserManagement.service;
+package com.Tech.quiz.UserManagement.service;
 
 import org.springframework.security.core.userdetails.UserDetails;
 

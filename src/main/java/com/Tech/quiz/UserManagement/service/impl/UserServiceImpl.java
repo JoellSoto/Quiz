@@ -1,7 +1,8 @@
-package UserManagement.service.impl;
+package com.Tech.quiz.UserManagement.service.impl;
 
 
-import UserManagement.service.UserService;
+import com.Tech.quiz.UserManagement.repository.UserRepository;
+import com.Tech.quiz.UserManagement.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -1,6 +1,6 @@
-package UserManagement.service.impl;
+package com.Tech.quiz.UserManagement.service.impl;
 
-import UserManagement.service.JWTService;
+import com.Tech.quiz.UserManagement.service.JWTService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

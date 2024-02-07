@@ -1,7 +1,10 @@
-package UserManagement.service.impl;
+package com.Tech.quiz.UserManagement.service.impl;
 
-import UserManagement.Entity.Roles;
-import UserManagement.service.RoleService;
+import com.Tech.quiz.UserManagement.entity.Roles;
+import com.Tech.quiz.UserManagement.entity.User;
+import com.Tech.quiz.UserManagement.repository.RoleRepository;
+import com.Tech.quiz.UserManagement.repository.UserRepository;
+import com.Tech.quiz.UserManagement.service.RoleService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;

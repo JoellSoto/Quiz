@@ -1,7 +1,17 @@
-package UserManagement.service.impl;
+package com.Tech.quiz.UserManagement.service.impl;
 
 
-import UserManagement.service.AuthenticationService;
+import com.Tech.quiz.UserManagement.entity.Roles;
+import com.Tech.quiz.UserManagement.entity.User;
+import com.Tech.quiz.UserManagement.dto.JwtAuthenticationResponse;
+import com.Tech.quiz.UserManagement.dto.RefreshTokenRequest;
+import com.Tech.quiz.UserManagement.dto.SignInRequest;
+import com.Tech.quiz.UserManagement.dto.SignUpRequest;
+import com.Tech.quiz.UserManagement.repository.RoleRepository;
+import com.Tech.quiz.UserManagement.repository.UserRepository;
+import com.Tech.quiz.UserManagement.service.AuthenticationService;
+import com.Tech.quiz.UserManagement.service.JWTService;
+import com.Tech.quiz.exceptions.ResourceNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
