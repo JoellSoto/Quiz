@@ -8,6 +8,7 @@ import com.Tech.quiz.Questions.service.QuestionService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -40,6 +41,7 @@ public class QuestionServiceImp implements QuestionService {
     public void updateQuestion(int questionId,Question question){
         Question questiontoUpdate = questionsRepository.findById(questionId).get();
         List <Answer> answerstoUpdate =questiontoUpdate.getOptions();
+        List<Answer>  newAnswersList=new ArrayList<>();
 
         for(byte i=0;i<3;i++){
             Answer answerToUpdate=answerstoUpdate.get(i);
@@ -47,12 +49,13 @@ public class QuestionServiceImp implements QuestionService {
             currentAnswer.setQuestion(questiontoUpdate);
             currentAnswer.setName(answerToUpdate.getName());
             currentAnswer.setCorrect(answerToUpdate.isCorrect());
-            answerRepository.save(currentAnswer);
+            newAnswersList.add(currentAnswer);
         }
 
         questiontoUpdate.setQuestion(question.getQuestion());
-        questiontoUpdate.setOptions(answerstoUpdate);
+        questiontoUpdate.setOptions(newAnswersList);
         questionsRepository.save(questiontoUpdate);
+        answerRepository.saveAll(newAnswersList);
 
 
 
