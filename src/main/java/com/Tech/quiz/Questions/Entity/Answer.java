@@ -36,4 +36,14 @@ public class Answer {
     @JsonBackReference(value="Answer_Question")
     @JoinColumn(name = "answer_id",nullable=false,unique=false)
     private Question question;
+
+    @Override
+    public String toString() {
+        return "Answer{" +
+                "id=" + id +
+                ", isCorrect=" + isCorrect +
+                ", name='" + name + '\'' +
+                ", question=" + question.getQuestion() +
+                '}';
+    }
 }
