@@ -41,25 +41,11 @@ public class QuestionServiceImp implements QuestionService {
     public void updateQuestion(int questionId,Question question){
         Question questiontoUpdate = questionsRepository.findById(questionId).get();
         List <Answer> answerstoUpdate =questiontoUpdate.getOptions();
-        List<Answer>  newAnswersList=new ArrayList<>();
-
-        for(byte i=0;i<3;i++){
-            Answer answerToUpdate=answerstoUpdate.get(i);
-            Answer currentAnswer= answerRepository.findById(answerToUpdate.getId()).get();
-            currentAnswer.setQuestion(questiontoUpdate);
-            currentAnswer.setName(answerToUpdate.getName());
-            currentAnswer.setCorrect(answerToUpdate.isCorrect());
-            newAnswersList.add(currentAnswer);
-        }
 
         questiontoUpdate.setQuestion(question.getQuestion());
-        questiontoUpdate.setOptions(newAnswersList);
+        questiontoUpdate.setOptions(answerstoUpdate);
         questionsRepository.save(questiontoUpdate);
-        answerRepository.saveAll(newAnswersList);
-
-
-
-
+        answerRepository.saveAll(answerstoUpdate);
     }
 
 }
