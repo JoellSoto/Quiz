@@ -1,0 +1,39 @@
+package com.Tech.quiz.Questions.Entity;
+
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
+import lombok.*;
+
+@Data
+@Getter
+@Setter
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
+public class Answer {
+    @Id
+    @SequenceGenerator(
+            name="Answer_sequence",
+            sequenceName="Answer_sequence",
+            allocationSize =1
+    )
+
+    @GeneratedValue(
+            strategy= GenerationType.SEQUENCE,
+            generator ="Answer_sequence"
+    )
+    @Column
+    private int id;
+
+    @Column
+    private boolean isCorrect;
+
+    @Column
+    private  String name;
+
+    @ManyToOne
+    @JsonBackReference(value="Answer_Question")
+    @JoinColumn(name = "answer_id",nullable=false,unique=false)
+    private Question question;
+}
