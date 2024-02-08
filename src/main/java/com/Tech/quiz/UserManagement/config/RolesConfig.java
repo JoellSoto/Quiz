@@ -4,7 +4,6 @@ import com.Tech.quiz.UserManagement.entity.Role;
 import com.Tech.quiz.UserManagement.entity.Roles;
 import com.Tech.quiz.UserManagement.entity.User;
 import com.Tech.quiz.UserManagement.repository.RoleRepository;
-import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,10 +14,9 @@ import java.util.Collections;
 import java.util.List;
 
 @Configuration
-@AllArgsConstructor
 public class RolesConfig {
     @Bean
-    CommandLineRunner comandLinerRunnerRoles(RoleRepository roleRepository) {
+    CommandLineRunner CommandLineRunner(RoleRepository roleRepository) {
         long numberRoles= roleRepository.count();
         List<Roles> roles=new ArrayList<Roles>();
 

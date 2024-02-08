@@ -18,6 +18,10 @@ public class ScoreServiceImpl implements ScoreService {
     private ScoreRepository scoreRepository;
     private UserRepository userRepository;
 
+    public void createScore(Score score){
+        scoreRepository.save(score);
+    }
+
     public List<Score> getAllbyUser(int userId){
         User currentUser= userRepository.findById(userId).get();
         return scoreRepository.findByUser(currentUser).stream().toList();

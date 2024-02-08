@@ -16,6 +16,12 @@ public class ScoreController {
 
     private ScoreService scoreService;
 
+
+    @PostMapping("/create")
+    public void createScore(@RequestBody Score score){
+        scoreService.createScore(score);
+    }
+
     @GetMapping("get-score/{userId}")
     public List<Score> getScoresByUser(@PathVariable("userId") int userId){
         return scoreService.getAllbyUser(userId);
