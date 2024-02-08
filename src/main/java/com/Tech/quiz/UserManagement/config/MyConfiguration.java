@@ -14,6 +14,6 @@ public class MyConfiguration implements WebMvcConfigurer {
                 .allowedMethods("GET", "POST", "PUT", "DELETE")
                 .allowedHeaders("*")
                 .exposedHeaders("*")
-                .allowCredentials(true).maxAge(999999999);
+                .allowCredentials(false).maxAge(999999999);
     }
 }

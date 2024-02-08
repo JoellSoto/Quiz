@@ -36,7 +36,10 @@ public class User  implements UserDetails{
     )
     private int id;
 
-    private String firstName,secondName,email,password;
+    private String firstName,secondName,email;
+
+    @JsonIgnore
+    private String password;
 
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
