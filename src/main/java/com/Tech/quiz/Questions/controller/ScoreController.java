@@ -3,7 +3,9 @@ package com.Tech.quiz.Questions.controller;
 
 import com.Tech.quiz.Questions.Entity.Score;
 import com.Tech.quiz.Questions.service.ScoreService;
+import jakarta.websocket.server.PathParam;
 import lombok.AllArgsConstructor;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,8 +20,8 @@ public class ScoreController {
 
 
     @PostMapping("/create")
-    public void createScore(@RequestBody Score score){
-        scoreService.createScore(score);
+    public void createScore(@PathParam("userId") int userId, @RequestBody Score score){
+        scoreService.createScore(score,userId);
     }
 
     @GetMapping("get-score/{userId}")

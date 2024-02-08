@@ -5,7 +5,7 @@ import com.Tech.quiz.Questions.Entity.Score;
 import java.util.List;
 
 public interface ScoreService {
-    void createScore(Score score);
+    void createScore(Score score,int userId);
     List<Score> getAllbyUser(int userId);
 
 }
