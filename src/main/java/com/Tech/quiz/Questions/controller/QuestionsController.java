@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 
-@RequestMapping("/api/v1/questions")
+@RequestMapping("/api/v1/user/questions")
 @CrossOrigin(origins="*")
 @AllArgsConstructor
 public class QuestionsController {
@@ -21,6 +21,11 @@ public class QuestionsController {
     public void createQuestin(@RequestBody Question question){
         questionService.createQuestion(question);
     }
+
+    @PostMapping("/create-multiple-question")
+   public void createMultipleQuestions(@RequestBody List<Question> questions){
+        questionService.createMultipleQuestion(questions);
+   }
     @GetMapping("/get-all")
     public List<Question> getAllQuestion(){
         return questionService.getAllQuestions();

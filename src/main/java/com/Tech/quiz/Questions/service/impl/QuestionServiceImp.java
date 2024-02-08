@@ -26,6 +26,14 @@ public class QuestionServiceImp implements QuestionService {
         answerRepository.saveAll(answers);
     }
 
+    public void createMultipleQuestion(List<Question> questions){
+        questionsRepository.saveAll(questions);
+
+             for (Question question : questions) {
+                answerRepository.saveAll(question.getOptions());
+             }
+
+    }
     public List<Question> getAllQuestions(){
         return  questionsRepository.findAll();
     }

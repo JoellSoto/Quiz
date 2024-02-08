@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 
-@AllArgsConstructor
+
 @Service
 public class JWTServiceImpl implements JWTService {
 

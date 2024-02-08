@@ -1,6 +1,8 @@
 package com.Tech.quiz.UserManagement.entity;
 
 
+import com.Tech.quiz.Questions.Entity.Score;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
@@ -10,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Data
@@ -36,16 +39,11 @@ public class User  implements UserDetails{
 
     private String firstName,secondName,email,password;
 
-
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
         return roles.stream()
                 .map(role -> new SimpleGrantedAuthority(role.getName()))
                 .collect(Collectors.toList());
-    }
-
-    public void setRoles(Collection<Roles> roles) {
-        this.roles = roles;
     }
 
     @JsonManagedReference(value="users")
@@ -54,6 +52,13 @@ public class User  implements UserDetails{
             joinColumns = @JoinColumn(name="user_id",referencedColumnName="id"),
             inverseJoinColumns=@JoinColumn(name="role_id",referencedColumnName="id"))
     private Collection<Roles>roles=new HashSet<>();
+
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    @JsonManagedReference(value="User_Score")
+    private List<Score> scores;
+
     @Override
     public String getPassword() {
         // TODO Auto-generated method stub
@@ -68,13 +73,11 @@ public class User  implements UserDetails{
 
     @Override
     public boolean isAccountNonExpired() {
-        // TODO Auto-generated method stub
         return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        // TODO Auto-generated method stub
         return true;
     }
 
