@@ -2,6 +2,7 @@ package com.Tech.quiz.Questions.controller;
 
 
 import com.Tech.quiz.Questions.Entity.Score;
+import com.Tech.quiz.Questions.dtos.Scoredto;
 import com.Tech.quiz.Questions.service.ScoreService;
 import jakarta.websocket.server.PathParam;
 import lombok.AllArgsConstructor;
@@ -20,8 +21,8 @@ public class ScoreController {
 
 
     @PostMapping("/create")
-    public void createScore(@PathParam("userId") int userId, @RequestBody Score score){
-        scoreService.createScore(score,userId);
+    public void createScore(@RequestBody Scoredto score){
+        scoreService.createScore(score);
     }
 
     @GetMapping("get-score/{userId}")

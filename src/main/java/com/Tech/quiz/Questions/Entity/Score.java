@@ -7,7 +7,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
@@ -33,6 +32,6 @@ public class Score {
 
     @ManyToOne
     @JsonBackReference(value="User_Score")
-    @JoinColumn(name = "user_id",nullable=false,unique=false)
+    @JoinColumn(name = "user_id", nullable=false, unique=false)
     private User user;
 }

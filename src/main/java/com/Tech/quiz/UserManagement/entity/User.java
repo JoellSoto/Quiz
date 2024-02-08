@@ -15,8 +15,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Data
-@AllArgsConstructor
+
 @NoArgsConstructor
 @Getter
 @Setter
@@ -46,6 +45,7 @@ public class User  implements UserDetails{
                 .collect(Collectors.toList());
     }
 
+
     @JsonManagedReference(value="users")
     @ManyToMany(fetch = FetchType.EAGER,cascade = {CascadeType.PERSIST,CascadeType.MERGE,CascadeType.DETACH})
     @JoinTable(name="USER_ROLES",
@@ -55,7 +55,7 @@ public class User  implements UserDetails{
 
 
     @JsonIgnore
-    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user")
     @JsonManagedReference(value="User_Score")
     private List<Score> scores;
 
