@@ -1,23 +1,22 @@
 package com.Tech.quiz.UserManagement.service.impl;
 
 
+import com.Tech.quiz.UserManagement.dto.*;
 import com.Tech.quiz.UserManagement.entity.Roles;
 import com.Tech.quiz.UserManagement.entity.User;
-import com.Tech.quiz.UserManagement.dto.JwtAuthenticationResponse;
-import com.Tech.quiz.UserManagement.dto.RefreshTokenRequest;
-import com.Tech.quiz.UserManagement.dto.SignInRequest;
-import com.Tech.quiz.UserManagement.dto.SignUpRequest;
 import com.Tech.quiz.UserManagement.repository.RoleRepository;
 import com.Tech.quiz.UserManagement.repository.UserRepository;
 import com.Tech.quiz.UserManagement.service.AuthenticationService;
 import com.Tech.quiz.UserManagement.service.JWTService;
 import com.Tech.quiz.exceptions.ResourceNotFoundException;
 import lombok.AllArgsConstructor;
+import org.antlr.v4.runtime.Token;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -32,21 +31,28 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final JWTService jwtService;
     private final RoleRepository roleRepository;
 
+    @Transactional
     public User signUp(SignUpRequest signUpRequest) {
         Roles role=new Roles();
         User user= new User();
         role=roleRepository.findByName("USER").get();
+        if(userRepository.findByEmail(signUpRequest.getEmail()).isPresent()){
+            throw new IllegalArgumentException("E-mail already in use");
+        }
+        else {
 
+            user.setEmail(signUpRequest.getEmail());
+            user.setFirstName(signUpRequest.getFirstName());
+            user.setSecondName(signUpRequest.getLastName());
+            user.setRoles(Collections.singletonList(role));
+            user.setPassword(passwordEncoder.encode(signUpRequest.getPassword()));
+            return userRepository.save(user);
 
-        user.setEmail(signUpRequest.getEmail());
-        user.setFirstName(signUpRequest.getFirstName());
-        user.setSecondName(signUpRequest.getLastName());
-        user.setRoles(Collections.singletonList(role));
-        user.setPassword(passwordEncoder.encode(signUpRequest.getPassword()));
+        }
 
-        return userRepository.save(user);
     }
 
+    @Transactional
     public JwtAuthenticationResponse signIn(SignInRequest signInRequest) {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(signInRequest.getEmail(),signInRequest.getPassword()));
@@ -54,7 +60,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             throw new ResourceNotFoundException("System Login", HttpStatus.INTERNAL_SERVER_ERROR.value(),HttpStatus.INTERNAL_SERVER_ERROR.name() , "Incorrect Username/Password!");
         }
 
-        var user=userRepository.findByEmail(signInRequest.getEmail()).orElseThrow(()->new IllegalArgumentException("Ivalid email or password"));
+        var user=userRepository.findByEmail(signInRequest.getEmail()).orElseThrow(()->new IllegalArgumentException("User Not Found"));
         var acessToken= jwtService.generateToken(user);
         var refreshToken= jwtService.generateRefreshToken(new HashMap<>(), user);
 
@@ -65,6 +71,14 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         return jwtAuthenticationResponse;
     }
 
+    public TokenState isTokenExpired(String token){
+        TokenState tokenState=new TokenState();
+        boolean isTokenExpired=jwtService.isTokenExpired(token);
+        tokenState.setTokenExpired(isTokenExpired);
+        return tokenState;
+    }
+
+    @Transactional
     public JwtAuthenticationResponse refreshToken(RefreshTokenRequest RefreshTokenRequest) {
         String userEmail = jwtService.extractUserName(RefreshTokenRequest.getToken());
         User user = userRepository.findByEmail(userEmail).orElseThrow();

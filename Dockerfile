@@ -5,5 +5,5 @@ RUN mvn clean package -X -DskipTests
 
 FROM openjdk:22
 WORKDIR /app
-COPY --from=build ./app/target/*.jar ./todo-list-app.jar
-ENTRYPOINT ["java","-jar","todo-list-app.jar"]
+COPY --from=build ./app/target/*.jar ./quiz-app.jar
+ENTRYPOINT ["java","-jar","quiz-app.jar"]

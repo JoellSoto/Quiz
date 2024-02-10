@@ -32,7 +32,6 @@ public class QuestionServiceImp implements QuestionService {
              for (Question question : questions) {
                 answerRepository.saveAll(question.getOptions());
              }
-
     }
     public List<Question> getAllQuestions(){
         return  questionsRepository.findAll();

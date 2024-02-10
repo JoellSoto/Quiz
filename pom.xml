@@ -99,6 +99,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>quiz-app</finalName>
 	</build>
 
 </project>

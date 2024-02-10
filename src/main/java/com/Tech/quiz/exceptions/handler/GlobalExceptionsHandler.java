@@ -30,5 +30,6 @@ public class GlobalExceptionsHandler {
         errorResponse.setTimestamp(LocalDateTime.now());
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
+
 }
 

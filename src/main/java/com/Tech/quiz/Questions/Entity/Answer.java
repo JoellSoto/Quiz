@@ -37,6 +37,7 @@ public class Answer {
     @JoinColumn(name = "answer_id",nullable=false,unique=false)
     private Question question;
 
+
     @Override
     public String toString() {
         return "Answer{" +

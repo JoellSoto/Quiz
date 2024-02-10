@@ -1,10 +1,7 @@
 package com.Tech.quiz.UserManagement.Controller;
 
 
-import com.Tech.quiz.UserManagement.dto.JwtAuthenticationResponse;
-import com.Tech.quiz.UserManagement.dto.RefreshTokenRequest;
-import com.Tech.quiz.UserManagement.dto.SignInRequest;
-import com.Tech.quiz.UserManagement.dto.SignUpRequest;
+import com.Tech.quiz.UserManagement.dto.*;
 import com.Tech.quiz.UserManagement.entity.User;
 import com.Tech.quiz.UserManagement.service.AuthenticationService;
 import lombok.AllArgsConstructor;
@@ -27,6 +24,11 @@ public class AuthenticationController {
     public ResponseEntity<JwtAuthenticationResponse> signIn(@RequestBody SignInRequest signInRequest){
         return ResponseEntity.ok(authenticationService.signIn(signInRequest));
     }
+    @PostMapping("/token-state")
+    public ResponseEntity<TokenState> isTokenInvalid(@RequestBody RefreshTokenRequest refreshTokenRequest){
+        return  ResponseEntity.ok(authenticationService.isTokenExpired(refreshTokenRequest.getToken()));
+    }
+
 
     @PostMapping("/refresh-token")
     public ResponseEntity<JwtAuthenticationResponse> refreshToken(@RequestBody RefreshTokenRequest refreshTokenRequest){
