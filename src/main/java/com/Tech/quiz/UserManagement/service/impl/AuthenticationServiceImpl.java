@@ -9,6 +9,7 @@ import com.Tech.quiz.UserManagement.repository.UserRepository;
 import com.Tech.quiz.UserManagement.service.AuthenticationService;
 import com.Tech.quiz.UserManagement.service.JWTService;
 import com.Tech.quiz.exceptions.ResourceNotFoundException;
+import com.Tech.quiz.exceptions.UserNotFoundException;
 import lombok.AllArgsConstructor;
 import org.antlr.v4.runtime.Token;
 import org.springframework.http.HttpStatus;
@@ -33,15 +34,14 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Transactional
     public User signUp(SignUpRequest signUpRequest) {
-        Roles role=new Roles();
+        Roles role;
         User user= new User();
         role=roleRepository.findByName("USER").get();
-        if(userRepository.findByEmail(signUpRequest.getEmail()).isPresent()){
-            throw new IllegalArgumentException("E-mail already in use");
+        if(userRepository.findByEmail(signUpRequest.getEmail().toUpperCase()).isPresent()){
+           throw new ResourceNotFoundException("System Sign-Up", HttpStatus.INTERNAL_SERVER_ERROR.value(),HttpStatus.INTERNAL_SERVER_ERROR.name() , "E-mail already in use");
         }
         else {
-
-            user.setEmail(signUpRequest.getEmail());
+            user.setEmail(signUpRequest.getEmail().toUpperCase());
             user.setFirstName(signUpRequest.getFirstName());
             user.setSecondName(signUpRequest.getLastName());
             user.setRoles(Collections.singletonList(role));
@@ -53,22 +53,23 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
 
     @Transactional
-    public JwtAuthenticationResponse signIn(SignInRequest signInRequest) {
+    public User signIn(SignInRequest signInRequest) {
         try {
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(signInRequest.getEmail(),signInRequest.getPassword()));
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(signInRequest.getEmail().toLowerCase(),signInRequest.getPassword()));
         } catch (Exception e) {
-            throw new ResourceNotFoundException("System Login", HttpStatus.INTERNAL_SERVER_ERROR.value(),HttpStatus.INTERNAL_SERVER_ERROR.name() , "Incorrect Username/Password!");
+            throw new UserNotFoundException("System Login", HttpStatus.INTERNAL_SERVER_ERROR.value(),HttpStatus.NOT_FOUND.name() , "Incorrect Credentials!!");
         }
 
-        var user=userRepository.findByEmail(signInRequest.getEmail()).orElseThrow(()->new IllegalArgumentException("User Not Found"));
+        var user=userRepository.findByEmail(signInRequest.getEmail().toLowerCase()).orElseThrow(()-> new UserNotFoundException("System Login", HttpStatus.INTERNAL_SERVER_ERROR.value(),HttpStatus.NOT_FOUND.name() , "Incorrect Credentials!"));
         var acessToken= jwtService.generateToken(user);
         var refreshToken= jwtService.generateRefreshToken(new HashMap<>(), user);
 
         JwtAuthenticationResponse jwtAuthenticationResponse= new JwtAuthenticationResponse();
         jwtAuthenticationResponse.setToken(acessToken);
         jwtAuthenticationResponse.setRefreshToken(refreshToken);
+        user.setJwtAuthenticationResponse(jwtAuthenticationResponse);
 
-        return jwtAuthenticationResponse;
+        return user;
     }
 
     public TokenState isTokenExpired(String token){

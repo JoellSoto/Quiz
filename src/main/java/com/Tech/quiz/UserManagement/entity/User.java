@@ -2,6 +2,7 @@ package com.Tech.quiz.UserManagement.entity;
 
 
 import com.Tech.quiz.Questions.Entity.Score;
+import com.Tech.quiz.UserManagement.dto.JwtAuthenticationResponse;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -40,6 +41,9 @@ public class User  implements UserDetails{
 
     @JsonIgnore
     private String password;
+
+    @Transient
+    private JwtAuthenticationResponse jwtAuthenticationResponse;
 
     public Collection<? extends GrantedAuthority> getAuthorities() {
 

@@ -21,6 +21,7 @@ public class RolesConfig {
         List<Roles> roles=new ArrayList<Roles>();
 
         if(numberRoles<=0)
+
             return args ->{
                 Roles adminRole =new Roles();
                 adminRole.setName(Role.ADMIN.name());
@@ -42,7 +43,7 @@ public class RolesConfig {
                 user.setRoles(Collections.singletonList(role));
                 user.setPassword( new BCryptPasswordEncoder().encode("Admin"));
             };
-        return null;
+        return args->{};
 
     }
 }
