@@ -37,11 +37,11 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         Roles role;
         User user= new User();
         role=roleRepository.findByName("USER").get();
-        if(userRepository.findByEmail(signUpRequest.getEmail().toUpperCase()).isPresent()){
+        if(userRepository.findByEmail(signUpRequest.getEmail().toLowerCase()).isPresent()){
            throw new ResourceNotFoundException("System Sign-Up", HttpStatus.INTERNAL_SERVER_ERROR.value(),HttpStatus.INTERNAL_SERVER_ERROR.name() , "E-mail already in use");
         }
         else {
-            user.setEmail(signUpRequest.getEmail().toUpperCase());
+            user.setEmail(signUpRequest.getEmail().toLowerCase());
             user.setFirstName(signUpRequest.getFirstName());
             user.setSecondName(signUpRequest.getLastName());
             user.setRoles(Collections.singletonList(role));
@@ -81,7 +81,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Transactional
     public JwtAuthenticationResponse refreshToken(RefreshTokenRequest RefreshTokenRequest) {
-        String userEmail = jwtService.extractUserName(RefreshTokenRequest.getToken());
+        String userEmail = jwtService.extractUserName(RefreshTokenRequest.getToken()).toLowerCase();
         User user = userRepository.findByEmail(userEmail).orElseThrow();
         if(jwtService.isTokenValid(RefreshTokenRequest.getToken(), user)) {
             var acessToken= jwtService.generateToken(user);
