@@ -32,6 +32,9 @@ public class Question {
     @Column
     private String question;
 
+    @Column
+    private String questionType;
+
     @JsonManagedReference(value="Answer_Question")
     @OneToMany(mappedBy = "question",cascade = CascadeType.ALL)
     List<Answer> options;

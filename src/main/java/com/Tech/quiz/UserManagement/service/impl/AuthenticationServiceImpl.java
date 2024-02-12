@@ -57,7 +57,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(signInRequest.getEmail().toLowerCase(),signInRequest.getPassword()));
         } catch (Exception e) {
-            throw new UserNotFoundException("System Login", HttpStatus.INTERNAL_SERVER_ERROR.value(),HttpStatus.NOT_FOUND.name() , "Incorrect Credentials!!");
+            throw new UserNotFoundException("System Login", HttpStatus.NOT_FOUND.value(),HttpStatus.NOT_FOUND.name() , "Incorrect Credentials!!");
         }
 
         var user=userRepository.findByEmail(signInRequest.getEmail().toLowerCase()).orElseThrow(()-> new UserNotFoundException("System Login", HttpStatus.INTERNAL_SERVER_ERROR.value(),HttpStatus.NOT_FOUND.name() , "Incorrect Credentials!"));
