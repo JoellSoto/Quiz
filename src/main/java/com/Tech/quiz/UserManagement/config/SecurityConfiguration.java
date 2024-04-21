@@ -18,6 +18,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import java.util.Arrays;
+import java.util.stream.Stream;
+
 @Configuration
 @EnableWebSecurity
 @AllArgsConstructor
@@ -26,11 +29,28 @@ public class SecurityConfiguration {
     private final UserService userService;
     private JwtAuthenticationFilter jwtAuthenticationFilter;
 
-    private static final String [] unsecuredUrls = {
+    private static final String [] unsecuredRoutes = {
             "/api/v1/auth/**",
-            "/api/v1/roles/**"
+            "/api/v1/roles/**",
+
     };
 
+    private  static final String [] swaggerUiUrls = {
+            "/api/v1/auth/login",
+            "/v2/api-docs",
+            "/v3/api-docs",
+            "/v3/api-docs/**",
+            "/swagger-resources",
+            "/swagger-resources/**",
+            "/configuration/ui",
+            "/configuration/security",
+            "/swagger-ui/**",
+            "/webjars/**",
+            "/swagger-ui.html"
+    };
+
+    private static final String [] unsecuredUrls= Stream.concat(Arrays.stream(unsecuredRoutes), Arrays.stream(swaggerUiUrls))
+            .toArray(String[]::new);
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer:: disable)
