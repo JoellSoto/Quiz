@@ -1,4 +1,4 @@
-package com.Tech.quiz.Questions.dtos;
+package com.Tech.quiz.question.dtos;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

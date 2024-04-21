@@ -1,8 +1,8 @@
-package com.Tech.quiz.Questions.controller;
+package com.Tech.quiz.question.controller;
 
 
-import com.Tech.quiz.Questions.Entity.Question;
-import com.Tech.quiz.Questions.service.QuestionService;
+import com.Tech.quiz.question.Entity.Question;
+import com.Tech.quiz.question.service.QuestionService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

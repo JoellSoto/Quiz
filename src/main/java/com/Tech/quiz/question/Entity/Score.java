@@ -1,4 +1,4 @@
-package com.Tech.quiz.Questions.Entity;
+package com.Tech.quiz.question.Entity;
 
 
 import com.Tech.quiz.UserManagement.entity.User;

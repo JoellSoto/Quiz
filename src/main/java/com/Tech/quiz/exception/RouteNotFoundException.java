@@ -1,4 +1,4 @@
-package com.Tech.quiz.exceptions;
+package com.Tech.quiz.exception;
 
 public class RouteNotFoundException extends RuntimeException {
     public RouteNotFoundException(String message) {

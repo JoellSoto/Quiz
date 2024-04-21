@@ -1,6 +1,6 @@
-package com.Tech.quiz.Questions.service;
+package com.Tech.quiz.question.service;
 
-import com.Tech.quiz.Questions.Entity.Question;
+import com.Tech.quiz.question.Entity.Question;
 
 import java.util.List;
 

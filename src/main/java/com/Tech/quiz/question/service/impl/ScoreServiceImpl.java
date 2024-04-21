@@ -1,13 +1,13 @@
-package com.Tech.quiz.Questions.service.impl;
+package com.Tech.quiz.question.service.impl;
 
 
-import com.Tech.quiz.Questions.Entity.Score;
-import com.Tech.quiz.Questions.dtos.Scoredto;
-import com.Tech.quiz.Questions.repository.ScoreRepository;
-import com.Tech.quiz.Questions.service.ScoreService;
+import com.Tech.quiz.question.Entity.Score;
+import com.Tech.quiz.question.dtos.Scoredto;
+import com.Tech.quiz.question.repository.ScoreRepository;
+import com.Tech.quiz.question.service.ScoreService;
 import com.Tech.quiz.UserManagement.entity.User;
 import com.Tech.quiz.UserManagement.repository.UserRepository;
-import com.Tech.quiz.exceptions.ResourceNotFoundException;
+import com.Tech.quiz.exception.ResourceNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;

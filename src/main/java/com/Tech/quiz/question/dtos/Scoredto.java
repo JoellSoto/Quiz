@@ -1,7 +1,7 @@
-package com.Tech.quiz.Questions.dtos;
+package com.Tech.quiz.question.dtos;
 
 
-import com.Tech.quiz.Questions.Entity.Score;
+import com.Tech.quiz.question.Entity.Score;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

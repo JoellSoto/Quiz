@@ -1,7 +1,6 @@
-package com.Tech.quiz.Questions.Entity;
+package com.Tech.quiz.question.Entity;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;

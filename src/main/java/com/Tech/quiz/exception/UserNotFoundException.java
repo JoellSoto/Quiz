@@ -1,4 +1,4 @@
-package com.Tech.quiz.exceptions;
+package com.Tech.quiz.exception;
 
 import lombok.Getter;
 import lombok.Setter;

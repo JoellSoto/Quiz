@@ -1,7 +1,7 @@
 package com.Tech.quiz.UserManagement.entity;
 
 
-import com.Tech.quiz.Questions.Entity.Score;
+import com.Tech.quiz.question.Entity.Score;
 import com.Tech.quiz.UserManagement.dto.JwtAuthenticationResponse;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;

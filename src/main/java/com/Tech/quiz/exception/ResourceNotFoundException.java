@@ -1,4 +1,4 @@
-package com.Tech.quiz.exceptions;
+package com.Tech.quiz.exception;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
 @Getter
 @Setter
-public class InvalidTokenException extends RuntimeException {
+public class ResourceNotFoundException extends RuntimeException {
 
     private String message;
     private int status;
@@ -16,7 +16,7 @@ public class InvalidTokenException extends RuntimeException {
 
     private String resource;
 
-    public InvalidTokenException(String resource, int status, String errorCode, String message) {
+    public ResourceNotFoundException(String resource, int status, String errorCode, String message) {
         super(String.format("%s not found with error code %s", resource, HttpStatus.INTERNAL_SERVER_ERROR.name()));
         this.resource = resource;
         this.status = status;

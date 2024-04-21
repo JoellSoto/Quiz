@@ -1,4 +1,4 @@
-package com.Tech.quiz.exceptions.handler;
+package com.Tech.quiz.exception.handler;
 
 import java.time.LocalDateTime;
 

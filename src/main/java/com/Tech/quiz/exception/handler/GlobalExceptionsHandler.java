@@ -1,8 +1,8 @@
-package com.Tech.quiz.exceptions.handler;
+package com.Tech.quiz.exception.handler;
 
-import com.Tech.quiz.exceptions.ResourceNotFoundException;
-import com.Tech.quiz.exceptions.RouteNotFoundException;
-import com.Tech.quiz.exceptions.UserNotFoundException;
+import com.Tech.quiz.exception.ResourceNotFoundException;
+import com.Tech.quiz.exception.RouteNotFoundException;
+import com.Tech.quiz.exception.UserNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

@@ -1,6 +1,6 @@
-package com.Tech.quiz.Questions.repository;
+package com.Tech.quiz.question.repository;
 
-import com.Tech.quiz.Questions.Entity.Answer;
+import com.Tech.quiz.question.Entity.Answer;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AnswerRepository extends JpaRepository<Answer,Integer> {

@@ -1,12 +1,10 @@
-package com.Tech.quiz.Questions.controller;
+package com.Tech.quiz.question.controller;
 
 
-import com.Tech.quiz.Questions.Entity.Score;
-import com.Tech.quiz.Questions.dtos.Scoredto;
-import com.Tech.quiz.Questions.service.ScoreService;
-import jakarta.websocket.server.PathParam;
+import com.Tech.quiz.question.Entity.Score;
+import com.Tech.quiz.question.dtos.Scoredto;
+import com.Tech.quiz.question.service.ScoreService;
 import lombok.AllArgsConstructor;
-import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

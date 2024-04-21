@@ -1,10 +1,10 @@
-package com.Tech.quiz.Questions.service.impl;
+package com.Tech.quiz.question.service.impl;
 
-import com.Tech.quiz.Questions.Entity.Answer;
-import com.Tech.quiz.Questions.Entity.Question;
-import com.Tech.quiz.Questions.repository.AnswerRepository;
-import com.Tech.quiz.Questions.repository.QuestionsRepository;
-import com.Tech.quiz.Questions.service.QuestionService;
+import com.Tech.quiz.question.Entity.Answer;
+import com.Tech.quiz.question.Entity.Question;
+import com.Tech.quiz.question.repository.AnswerRepository;
+import com.Tech.quiz.question.repository.QuestionsRepository;
+import com.Tech.quiz.question.service.QuestionService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

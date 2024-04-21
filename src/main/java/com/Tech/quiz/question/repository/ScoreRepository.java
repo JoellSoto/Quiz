@@ -1,7 +1,7 @@
-package com.Tech.quiz.Questions.repository;
+package com.Tech.quiz.question.repository;
 
 
-import com.Tech.quiz.Questions.Entity.Score;
+import com.Tech.quiz.question.Entity.Score;
 import com.Tech.quiz.UserManagement.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

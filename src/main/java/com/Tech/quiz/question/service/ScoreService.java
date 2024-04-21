@@ -1,7 +1,7 @@
-package com.Tech.quiz.Questions.service;
+package com.Tech.quiz.question.service;
 
-import com.Tech.quiz.Questions.Entity.Score;
-import com.Tech.quiz.Questions.dtos.Scoredto;
+import com.Tech.quiz.question.Entity.Score;
+import com.Tech.quiz.question.dtos.Scoredto;
 
 import java.util.List;
 
