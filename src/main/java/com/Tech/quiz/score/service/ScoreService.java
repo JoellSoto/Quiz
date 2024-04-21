@@ -1,4 +1,4 @@
-package com.Tech.quiz.question.service;
+package com.Tech.quiz.score.service;
 
 import com.Tech.quiz.question.Entity.Score;
 import com.Tech.quiz.question.dtos.Scoredto;

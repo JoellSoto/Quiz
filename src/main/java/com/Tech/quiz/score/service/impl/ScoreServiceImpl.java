@@ -1,10 +1,10 @@
-package com.Tech.quiz.question.service.impl;
+package com.Tech.quiz.score.service.impl;
 
 
 import com.Tech.quiz.question.Entity.Score;
 import com.Tech.quiz.question.dtos.Scoredto;
 import com.Tech.quiz.question.repository.ScoreRepository;
-import com.Tech.quiz.question.service.ScoreService;
+import com.Tech.quiz.score.service.ScoreService;
 import com.Tech.quiz.UserManagement.entity.User;
 import com.Tech.quiz.UserManagement.repository.UserRepository;
 import com.Tech.quiz.exception.ResourceNotFoundException;
