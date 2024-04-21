@@ -1,6 +1,7 @@
 package com.Tech.quiz.question.Entity;
 
 
+import com.Tech.quiz.answer.domain.Answer;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;

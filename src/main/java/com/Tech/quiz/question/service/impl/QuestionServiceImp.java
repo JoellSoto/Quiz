@@ -1,6 +1,6 @@
 package com.Tech.quiz.question.service.impl;
 
-import com.Tech.quiz.question.Entity.Answer;
+import com.Tech.quiz.answer.domain.Answer;
 import com.Tech.quiz.question.Entity.Question;
 import com.Tech.quiz.question.repository.AnswerRepository;
 import com.Tech.quiz.question.repository.QuestionsRepository;
